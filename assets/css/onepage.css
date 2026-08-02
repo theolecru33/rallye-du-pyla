@@ -59,6 +59,15 @@ em, i, strong, b { font-style: normal; font-weight: inherit; }
   --pad-x: clamp(20px, 5vw, 72px);
   --pad-section: clamp(76px, 10vw, 140px);
   --shadow-soft: 0 18px 50px rgba(20, 24, 31, 0.10);
+  /* Verre depoli : une seule recette pour la capsule, les panneaux, le
+     panier et le tiroir mobile. Se regle ici et nulle part ailleurs.
+     C'est le brightness qui garantit la lisibilite du texte blanc, pas
+     l'opacite : baisser l'opacite rend le verre plus transparent sans
+     rien couter au contraste. */
+  --verre-teinte: rgba(22, 36, 27, 0.42);
+  --verre-reflet: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%);
+  --verre-filtre: blur(30px) saturate(155%) brightness(0.58);
+  --verre-filet: rgba(255, 255, 255, 0.22);
 }
 
 /* ---------- Base ---------- */
@@ -243,11 +252,9 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
-    rgba(22, 36, 27, 0.5);
-  backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
-  -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+  background: var(--verre-reflet), var(--verre-teinte);
+  backdrop-filter: var(--verre-filtre);
+  -webkit-backdrop-filter: var(--verre-filtre);
 }
 /* z-index sur des elements flex : il s'applique sans position, donc .main-nav
    ne devient pas le bloc conteneur du panneau deroulant. */
@@ -330,7 +337,7 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
     padding: 6px 16px 6px 11px;
     border-radius: 16px;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    border: 1px solid var(--verre-filet);
     box-shadow: 0 12px 38px rgba(10, 12, 16, 0.24);
   }
   .brand { align-items: center; }
@@ -342,6 +349,7 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
 
   /* Sticky : le header reste colle, la pilule garde sa forme (pas de morph) */
   .site-header.scrolled { box-shadow: none; }
+
 }
 
 /* ===== Actions header : reseaux, connexion, panier ===== */
@@ -377,12 +385,10 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   .has-mega:focus-within .mega { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; z-index: 51; }
   .mega-inner {
     /* meme verre que la capsule et que le panier */
-    background:
-      linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
-      rgba(22, 36, 27, 0.5);
-    backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
-    -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: var(--verre-reflet), var(--verre-teinte);
+    backdrop-filter: var(--verre-filtre);
+    -webkit-backdrop-filter: var(--verre-filtre);
+    border: 1px solid var(--verre-filet);
     border-radius: 16px;
     box-shadow: 0 22px 54px rgba(10, 12, 16, 0.4);
     padding: 16px;
@@ -553,6 +559,24 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   width: clamp(230px, 31vw, 450px);
   filter: drop-shadow(0 8px 24px rgba(20, 24, 31, 0.28));
   pointer-events: none;
+}
+/* La plaque etait calee sur un pourcentage de la hauteur de l'affiche. Cette
+   hauteur, c'est l'ecran moins la rangee de cartes, qui elle ne bouge pas :
+   sur un ecran court (un portable 16:9 en 720 ou 768 de haut, un Mac en 800)
+   le pourcentage fondait et la plaque montait dans la capsule. On la cale
+   desormais sous la capsule, a distance fixe : meme rapport partout.
+   Repere : l'affiche commence a clamp(22px, 2.6vw, 44px) du haut, la capsule
+   10px plus bas et fait 64px, son bas est donc a 74px du haut de l'affiche.
+   Cette regle doit rester APRES la regle de base : a specificite egale, c'est
+   l'ordre du fichier qui tranche, une media query n'y change rien. */
+@media (min-width: 1081px) {
+  .hero-plate {
+    top: calc(74px + clamp(20px, 3vh, 52px));
+    transform: translateX(-50%);
+    /* la largeur ne suivait que la largeur d'ecran : sur un 16:9 court, une
+       plaque de 450px mangeait la moitie de la hauteur de l'affiche */
+    width: min(clamp(230px, 31vw, 450px), 44vh);
+  }
 }
 .hero-head {
   position: absolute;
@@ -1206,14 +1230,12 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   flex-direction: column;
   overflow: hidden;
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid var(--verre-filet);
   border-radius: 16px;
   /* le degrade blanc tres faible donne le reflet du verre, il ne teinte rien */
-  background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
-    rgba(22, 36, 27, 0.5);
-  backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
-  -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+  background: var(--verre-reflet), var(--verre-teinte);
+  backdrop-filter: var(--verre-filtre);
+  -webkit-backdrop-filter: var(--verre-filtre);
   transform: translateX(calc(100% + var(--marge-panier)));
   transition: transform 420ms cubic-bezier(0.32, 0.72, 0.25, 1);
   box-shadow: 0 24px 64px rgba(10, 14, 12, 0.34);
@@ -1285,7 +1307,7 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
 .compteur {
   display: inline-flex;
   align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid var(--verre-filet);
   border-radius: var(--r-btn);
   overflow: hidden;
   background: rgba(255, 255, 255, 0.08);
@@ -1546,7 +1568,7 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
     margin: calc(12px + env(safe-area-inset-top, 0px)) 14px 0;
     padding: 5px 6px 5px 12px;
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    border: 1px solid var(--verre-filet);
     box-shadow: 0 12px 38px rgba(10, 12, 16, 0.24);
   }
   .brand { justify-self: auto; align-items: center; }
@@ -1578,13 +1600,11 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
     overflow-y: auto;
     overscroll-behavior-y: contain;
     padding: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    border: 1px solid var(--verre-filet);
     border-radius: 16px;
-    background:
-      linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
-      rgba(22, 36, 27, 0.5);
-    backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
-    -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+    background: var(--verre-reflet), var(--verre-teinte);
+    backdrop-filter: var(--verre-filtre);
+    -webkit-backdrop-filter: var(--verre-filtre);
     box-shadow: 0 22px 54px rgba(10, 12, 16, 0.4);
     /* meme entree que le panier : un glissement depuis la droite, sans fondu */
     visibility: hidden;
