@@ -116,6 +116,12 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   outline-offset: 3px;
   border-radius: 2px;
 }
+/* Sur les surfaces sombres, le vert fonce ne se detache pas : il passe pour un
+   halo au lieu d'un contour. Le blanc redevient un vrai anneau de focus. */
+.panier :focus-visible,
+.section-dark :focus-visible,
+.mega :focus-visible,
+.site-header :focus-visible { outline-color: rgba(255, 255, 255, 0.9); }
 
 .skip-link {
   position: absolute;
@@ -294,7 +300,7 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
 
 /* ===== Header : pilule centree en verre (liquid glass) ===== */
 @media (min-width: 1081px) {
-  .header-inner { display: flex; align-items: center; gap: 18px; width: max-content; max-width: calc(100% - 28px); margin: calc(clamp(22px, 2.6vw, 44px) + 10px) auto 0; padding: 6px 16px 6px 11px; border-radius: 16px; background: rgba(10, 13, 18, 0.78); backdrop-filter: blur(16px) saturate(130%) brightness(0.6); -webkit-backdrop-filter: blur(16px) saturate(130%) brightness(0.6); border: 1px solid rgba(255, 255, 255, 0.22); box-shadow: 0 12px 38px rgba(10, 12, 16, 0.24); }
+  .header-inner { display: flex; align-items: center; gap: 18px; width: max-content; max-width: calc(100% - 28px); margin: calc(clamp(22px, 2.6vw, 44px) + 10px) auto 0; padding: 6px 16px 6px 11px; border-radius: 16px; background: rgba(14, 18, 24, 0.6); backdrop-filter: blur(15px) saturate(135%) brightness(0.82); -webkit-backdrop-filter: blur(15px) saturate(135%) brightness(0.82); border: 1px solid rgba(255, 255, 255, 0.22); box-shadow: 0 12px 38px rgba(10, 12, 16, 0.24); }
   .brand { align-items: center; }
   .brand img { height: 50px; }
   .main-nav a:not(.btn) { min-height: 40px; }
@@ -338,9 +344,11 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   .has-mega.open .mega,
   .has-mega:focus-within .mega { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; z-index: 51; }
   .mega-inner {
-    background: rgba(12, 16, 21, 0.78);
-    backdrop-filter: blur(26px) saturate(140%) brightness(0.6);
-    -webkit-backdrop-filter: blur(26px) saturate(140%) brightness(0.6);
+    /* Le panneau ouvert, lui, doit etre mat : il porte du texte fin par-dessus
+       des photos, la transparence de la capsule n'y est pas tenable. */
+    background: rgba(13, 17, 22, 0.93);
+    backdrop-filter: blur(26px) saturate(130%) brightness(0.5);
+    -webkit-backdrop-filter: blur(26px) saturate(130%) brightness(0.5);
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 16px;
     box-shadow: 0 22px 54px rgba(10, 12, 16, 0.4);
@@ -1136,35 +1144,44 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
 .cart-compteur[hidden] { display: none; }
 .header-cart { position: relative; background: transparent; cursor: pointer; }
 
-/* Le voile reste discret : c'est lui qui donne au tiroir quelque chose a
-   depolir. Trop opaque, le verre n'a plus rien derriere lui et l'effet tombe. */
+/* Le voile reste tres discret : c'est la page qui donne au verre sa matiere.
+   Trop opaque, le panneau n'a plus rien a depolir et l'effet tombe. */
 .voile {
   position: fixed;
   inset: 0;
   z-index: 150;
-  background: rgba(10, 14, 11, 0.34);
+  background: rgba(10, 14, 11, 0.22);
   opacity: 0;
   transition: opacity 300ms var(--ease);
 }
 .voile.visible { opacity: 1; }
 
-/* ---------- Panier : tiroir en verre depoli, teinte vert du club ---------- */
+/* ---------- Panier : panneau de verre flottant, comme la capsule du header ----------
+   Meme recette que le header : forte opacite du fond, brightness qui ecrase la
+   lumiere du contenu derriere, filet blanc a 1px tout autour, angles a 16px. */
 .panier {
+  --marge-panier: clamp(12px, 1.5vw, 22px);
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  top: calc(var(--marge-panier) + env(safe-area-inset-top, 0px));
+  right: var(--marge-panier);
+  bottom: calc(var(--marge-panier) + env(safe-area-inset-bottom, 0px));
   z-index: 160;
-  width: min(432px, 100vw);
+  width: min(420px, calc(100vw - var(--marge-panier) * 2));
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   color: #fff;
-  background: rgba(24, 38, 29, 0.72);
-  backdrop-filter: blur(34px) saturate(150%) brightness(0.55);
-  -webkit-backdrop-filter: blur(34px) saturate(150%) brightness(0.55);
-  transform: translateX(100%);
-  transition: transform 380ms cubic-bezier(0.32, 0.72, 0.25, 1);
-  box-shadow: -20px 0 60px rgba(8, 12, 10, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 16px;
+  /* le degrade blanc tres faible donne le reflet du verre, il ne teinte rien */
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
+    rgba(22, 36, 27, 0.5);
+  backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+  -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+  transform: translateX(calc(100% + var(--marge-panier)));
+  transition: transform 420ms cubic-bezier(0.32, 0.72, 0.25, 1);
+  box-shadow: 0 24px 64px rgba(10, 14, 12, 0.34);
 }
 .panier.ouvert { transform: translateX(0); }
 /* Sans backdrop-filter, on retombe sur un vert plein : jamais de translucide illisible */
@@ -1280,7 +1297,8 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
 .panier-vide p { font-size: 0.9rem; color: rgba(255, 255, 255, 0.64); line-height: 1.55; }
 
 .panier-pied {
-  padding: 18px 22px calc(22px + env(safe-area-inset-bottom, 0px));
+  /* la zone sure est deja prise en compte par le retrait bas du panneau */
+  padding: 18px 22px 22px;
   border-top: 1px solid rgba(255, 255, 255, 0.16);
   background: rgba(255, 255, 255, 0.06);
 }
@@ -1483,7 +1501,7 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   .site-header.scrolled .brand img { height: 52px; }
   .nav-capsule { display: contents; }
   .header-actions { display: none; }
-  .site-header { background: rgba(12, 16, 21, 0.62); backdrop-filter: blur(20px) saturate(140%) brightness(0.65); -webkit-backdrop-filter: blur(20px) saturate(140%) brightness(0.65); border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+  .site-header { background: rgba(16, 20, 26, 0.36); backdrop-filter: blur(20px) saturate(150%) brightness(0.8); -webkit-backdrop-filter: blur(20px) saturate(150%) brightness(0.8); border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
   .main-nav {
     position: fixed;
     inset: 0;
