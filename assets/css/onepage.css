@@ -294,7 +294,7 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
 
 /* ===== Header : pilule centree en verre (liquid glass) ===== */
 @media (min-width: 1081px) {
-  .header-inner { display: flex; align-items: center; gap: 18px; width: max-content; max-width: calc(100% - 28px); margin: calc(clamp(22px, 2.6vw, 44px) + 10px) auto 0; padding: 6px 16px 6px 11px; border-radius: 16px; background: rgba(14, 18, 24, 0.62); backdrop-filter: blur(14px) saturate(135%) brightness(0.85); -webkit-backdrop-filter: blur(14px) saturate(135%) brightness(0.85); border: 1px solid rgba(255, 255, 255, 0.22); box-shadow: 0 12px 38px rgba(10, 12, 16, 0.24); }
+  .header-inner { display: flex; align-items: center; gap: 18px; width: max-content; max-width: calc(100% - 28px); margin: calc(clamp(22px, 2.6vw, 44px) + 10px) auto 0; padding: 6px 16px 6px 11px; border-radius: 16px; background: rgba(10, 13, 18, 0.78); backdrop-filter: blur(16px) saturate(130%) brightness(0.6); -webkit-backdrop-filter: blur(16px) saturate(130%) brightness(0.6); border: 1px solid rgba(255, 255, 255, 0.22); box-shadow: 0 12px 38px rgba(10, 12, 16, 0.24); }
   .brand { align-items: center; }
   .brand img { height: 50px; }
   .main-nav a:not(.btn) { min-height: 40px; }
@@ -338,9 +338,9 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   .has-mega.open .mega,
   .has-mega:focus-within .mega { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; z-index: 51; }
   .mega-inner {
-    background: rgba(18, 22, 28, 0.62);
-    backdrop-filter: blur(26px) saturate(160%);
-    -webkit-backdrop-filter: blur(26px) saturate(160%);
+    background: rgba(12, 16, 21, 0.78);
+    backdrop-filter: blur(26px) saturate(140%) brightness(0.6);
+    -webkit-backdrop-filter: blur(26px) saturate(140%) brightness(0.6);
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 16px;
     box-shadow: 0 22px 54px rgba(10, 12, 16, 0.4);
@@ -877,7 +877,10 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
 .gt-body > .btn { margin-top: clamp(24px, 2.6vw, 36px); }
 
 /* ---------- Galerie ---------- */
-.section-galerie { padding-bottom: clamp(34px, 4vw, 56px); }
+/* « En images » enchaine sur l'association : on coupe de moitie les deux
+   respirations qui se cumulaient entre les deux blocs. */
+.section-asso { padding-bottom: clamp(38px, 4.4vw, 62px); }
+.section-galerie { padding-top: clamp(38px, 4.4vw, 62px); padding-bottom: clamp(34px, 4vw, 56px); }
 /* titre et credit centres */
 .section-galerie .section-head { max-width: none; text-align: center; }
 .mosaic {
@@ -1133,16 +1136,19 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
 .cart-compteur[hidden] { display: none; }
 .header-cart { position: relative; background: transparent; cursor: pointer; }
 
+/* Le voile reste discret : c'est lui qui donne au tiroir quelque chose a
+   depolir. Trop opaque, le verre n'a plus rien derriere lui et l'effet tombe. */
 .voile {
   position: fixed;
   inset: 0;
   z-index: 150;
-  background: rgba(10, 12, 16, 0.5);
+  background: rgba(10, 14, 11, 0.34);
   opacity: 0;
   transition: opacity 300ms var(--ease);
 }
 .voile.visible { opacity: 1; }
 
+/* ---------- Panier : tiroir en verre depoli, teinte vert du club ---------- */
 .panier {
   position: fixed;
   top: 0;
@@ -1152,12 +1158,19 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   width: min(432px, 100vw);
   display: flex;
   flex-direction: column;
-  background: var(--bg);
+  color: #fff;
+  background: rgba(24, 38, 29, 0.72);
+  backdrop-filter: blur(34px) saturate(150%) brightness(0.55);
+  -webkit-backdrop-filter: blur(34px) saturate(150%) brightness(0.55);
   transform: translateX(100%);
   transition: transform 380ms cubic-bezier(0.32, 0.72, 0.25, 1);
-  box-shadow: -14px 0 44px rgba(20, 24, 31, 0.18);
+  box-shadow: -20px 0 60px rgba(8, 12, 10, 0.34);
 }
 .panier.ouvert { transform: translateX(0); }
+/* Sans backdrop-filter, on retombe sur un vert plein : jamais de translucide illisible */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .panier { background: #1D2E23; }
+}
 
 .panier-tete {
   display: flex;
@@ -1166,33 +1179,35 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   gap: 14px;
   padding: 22px 22px 16px;
 }
-.panier-titre { font-family: var(--display); font-weight: 400; font-size: 1.5rem; color: var(--ink); }
-.panier-compte { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+.panier-titre { font-family: var(--display); font-weight: 400; font-size: 1.5rem; color: #fff; }
+.panier-compte { font-size: 0.8rem; color: rgba(255, 255, 255, 0.64); margin-top: 2px; }
 .panier-fermer {
   flex: none;
   width: 42px;
   height: 42px;
   display: grid;
   place-items: center;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--r-btn);
-  background: var(--paper);
-  color: var(--muted);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
-  transition: border-color 200ms var(--ease), color 200ms var(--ease);
+  transition: border-color 200ms var(--ease), color 200ms var(--ease), background-color 200ms var(--ease);
 }
-@media (hover: hover) { .panier-fermer:hover { border-color: var(--ink); color: var(--ink); } }
+@media (hover: hover) {
+  .panier-fermer:hover { border-color: rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.16); color: #fff; }
+}
 
 /* Jauge de livraison offerte */
-.panier-jauge { padding: 0 22px 18px; border-bottom: 1px solid var(--line); }
-.panier-jauge-texte { font-size: 0.84rem; color: var(--muted); margin-bottom: 9px; }
-.panier-jauge-texte.atteint { color: var(--vert-dark); }
-.jauge { height: 6px; background: var(--bg-alt); border-radius: 3px; overflow: hidden; }
+.panier-jauge { padding: 0 22px 18px; border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+.panier-jauge-texte { font-size: 0.84rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 9px; }
+.panier-jauge-texte.atteint { color: var(--vert-pale); }
+.jauge { height: 6px; background: rgba(255, 255, 255, 0.16); border-radius: 3px; overflow: hidden; }
 .jauge-barre {
   display: block;
   height: 100%;
   width: 0;
-  background: var(--vert);
+  background: var(--vert-pale);
   border-radius: 3px;
   transition: width 420ms var(--ease);
 }
@@ -1205,21 +1220,21 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   gap: 14px;
   padding-block: 18px;
 }
-.panier-article + .panier-article { border-top: 1px solid var(--line); }
+.panier-article + .panier-article { border-top: 1px solid rgba(255, 255, 255, 0.12); }
 .panier-article img { width: 76px; height: 92px; object-fit: cover; border-radius: var(--r-img); }
 .panier-article-haut { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
-.panier-article-nom { font-family: var(--display); font-size: 1.05rem; color: var(--ink); line-height: 1.25; }
-.panier-article-variante { font-size: 0.8rem; color: var(--muted); margin-top: 3px; }
-.panier-article-prix { font-size: 0.95rem; color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.panier-article-nom { font-family: var(--display); font-size: 1.05rem; color: #fff; line-height: 1.25; }
+.panier-article-variante { font-size: 0.8rem; color: rgba(255, 255, 255, 0.62); margin-top: 3px; }
+.panier-article-prix { font-size: 0.95rem; color: #fff; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .panier-article-bas { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 12px; }
 
 .compteur {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--line-strong);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: var(--r-btn);
   overflow: hidden;
-  background: var(--paper);
+  background: rgba(255, 255, 255, 0.08);
 }
 .compteur button {
   width: 40px;
@@ -1228,14 +1243,14 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   place-items: center;
   border: 0;
   background: transparent;
-  color: var(--ink);
+  color: #fff;
   font-size: 1.05rem;
   line-height: 1;
   cursor: pointer;
   transition: background-color 200ms var(--ease);
 }
-.compteur button[disabled] { color: var(--muted-2); cursor: default; }
-@media (hover: hover) { .compteur button:not([disabled]):hover { background: var(--bg); } }
+.compteur button[disabled] { color: rgba(255, 255, 255, 0.34); cursor: default; }
+@media (hover: hover) { .compteur button:not([disabled]):hover { background: rgba(255, 255, 255, 0.16); } }
 .compteur span { min-width: 30px; text-align: center; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
 
 .panier-retirer {
@@ -1243,50 +1258,51 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   padding: 8px 4px;
   border: 0;
   background: transparent;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.62);
   font-size: 0.8rem;
   text-decoration: underline;
   text-underline-offset: 3px;
   cursor: pointer;
   transition: color 200ms var(--ease);
 }
-@media (hover: hover) { .panier-retirer:hover { color: var(--ink); } }
+@media (hover: hover) { .panier-retirer:hover { color: #fff; } }
 
-/* Panier vide */
 @media (max-width: 400px) {
   /* 120px restants pour une adresse qui en mesure 150 : on empile */
   .contact-coords li { flex-direction: column; gap: 4px; }
   .contact-coords-label { flex: none; }
   .contact-coords a { overflow-wrap: anywhere; }
 }
+
+/* Panier vide */
 .panier-vide { padding: 40px 8px; text-align: center; }
-.panier-vide-titre { font-family: var(--display); font-size: 1.25rem; color: var(--ink); margin-bottom: 8px; }
-.panier-vide p { font-size: 0.9rem; color: var(--muted); line-height: 1.55; }
+.panier-vide-titre { font-family: var(--display); font-size: 1.25rem; color: #fff; margin-bottom: 8px; }
+.panier-vide p { font-size: 0.9rem; color: rgba(255, 255, 255, 0.64); line-height: 1.55; }
 
 .panier-pied {
   padding: 18px 22px calc(22px + env(safe-area-inset-bottom, 0px));
-  border-top: 1px solid var(--line);
-  background: var(--paper);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
 }
 .panier-ligne-compte {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   font-size: 0.9rem;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.72);
 }
 .panier-ligne-compte + .panier-ligne-compte { margin-top: 7px; }
 .panier-ligne-total {
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
   font-family: var(--display);
   font-size: 1.3rem;
-  color: var(--ink);
+  color: #fff;
 }
-.panier-ligne-total span:first-child { font-family: var(--sans); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.panier-ligne-total span:first-child { font-family: var(--sans); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.64); }
 .panier-commander { width: 100%; margin-top: 16px; }
-.panier-note { font-size: 0.78rem; color: var(--muted); margin-top: 10px; line-height: 1.5; text-align: center; }
+.panier-note { font-size: 0.78rem; color: rgba(255, 255, 255, 0.58); margin-top: 10px; line-height: 1.5; text-align: center; }
 .panier-vider {
   display: block;
   width: 100%;
@@ -1294,12 +1310,12 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   min-height: 40px;
   border: 0;
   background: transparent;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.58);
   font-size: 0.82rem;
   cursor: pointer;
   transition: color 200ms var(--ease);
 }
-@media (hover: hover) { .panier-vider:hover { color: var(--ink); } }
+@media (hover: hover) { .panier-vider:hover { color: #fff; } }
 
 @media (prefers-reduced-motion: reduce) {
   .panier { transition: none; }
@@ -1467,7 +1483,7 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   .site-header.scrolled .brand img { height: 52px; }
   .nav-capsule { display: contents; }
   .header-actions { display: none; }
-  .site-header { background: rgba(22, 26, 33, 0.28); backdrop-filter: blur(20px) saturate(160%); -webkit-backdrop-filter: blur(20px) saturate(160%); border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+  .site-header { background: rgba(12, 16, 21, 0.62); backdrop-filter: blur(20px) saturate(140%) brightness(0.65); -webkit-backdrop-filter: blur(20px) saturate(140%) brightness(0.65); border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
   .main-nav {
     position: fixed;
     inset: 0;
