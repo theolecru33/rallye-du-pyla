@@ -40,6 +40,14 @@
   nav.addEventListener('click', function (e) {
     if (e.target.closest('a')) { closeMenu(); }
   });
+  /* Les reseaux, la connexion et le panier vivent dans le panneau sur mobile :
+     on le referme avant d'ouvrir le tiroir ou de partir sur un lien externe. */
+  var actions = document.querySelector('.header-actions');
+  if (actions) {
+    actions.addEventListener('click', function () {
+      if (header.classList.contains('menu-open')) { closeMenu(); }
+    });
+  }
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && header.classList.contains('menu-open')) {
       closeMenu();

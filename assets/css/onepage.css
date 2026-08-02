@@ -234,6 +234,25 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   gap: 18px;
   position: relative;
 }
+/* Le verre est porte par un pseudo-element, jamais par .header-inner : un
+   backdrop-filter fait de son element une racine de fond, et tout ce qu'il
+   contient (panneau deroulant, menu mobile en position:fixed) s'y retrouve
+   enferme sans rien a depolir. */
+.header-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
+    rgba(22, 36, 27, 0.5);
+  backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+  -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+}
+/* z-index sur des elements flex : il s'applique sans position, donc .main-nav
+   ne devient pas le bloc conteneur du panneau deroulant. */
+.header-inner > * { z-index: 1; }
+
 .brand { display: inline-flex; justify-self: start; }
 .brand img { height: 104px; width: auto; display: block; transition: height 300ms var(--ease); }
 
@@ -314,25 +333,6 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
     border: 1px solid rgba(255, 255, 255, 0.22);
     box-shadow: 0 12px 38px rgba(10, 12, 16, 0.24);
   }
-  /* Le verre est porte par un pseudo-element, pas par la capsule elle-meme.
-     Un backdrop-filter fait de son element une racine de fond : pose sur
-     .header-inner, il coupait le panneau deroulant, qui est son descendant,
-     de tout ce qu'il y avait a depolir. Sur un ::before, le panneau retrouve
-     la page derriere lui. */
-  .header-inner::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background:
-      linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
-      rgba(22, 36, 27, 0.5);
-    backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
-    -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
-  }
-  /* z-index sur des elements flex : il s'applique sans position, donc .main-nav
-     ne devient pas le bloc conteneur du panneau deroulant. */
-  .header-inner > * { z-index: 1; }
   .brand { align-items: center; }
   .brand img { height: 50px; }
   .main-nav a:not(.btn) { min-height: 40px; }
@@ -481,7 +481,6 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   border-radius: 2px;
   transition: transform 320ms var(--ease), opacity 200ms var(--ease);
 }
-.site-header.menu-open .burger span { background: var(--ink); }
 .site-header.menu-open .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .site-header.menu-open .burger span:nth-child(2) { opacity: 0; }
 .site-header.menu-open .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -676,8 +675,11 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
 .ev-name { grid-column: 1; grid-row: 1; margin-bottom: 0; align-self: baseline; }
 .ev-price { grid-column: 2; grid-row: 1; align-self: baseline; }
 .ev-meta { grid-column: 1 / -1; grid-row: 2; margin-top: 4px; }
-/* En carte etroite, le prix en nowrap poussait le titre hors du cadre : on empile. */
-@media (max-width: 1080px) {
+/* En carte etroite, le prix en nowrap poussait le titre hors du cadre : on empile.
+   Le seuil est a 1300 et non a 1080 : entre les deux, le titre partait sur deux
+   a quatre lignes selon l'ecran, et la meme carte ne se lisait pas pareil d'un
+   PC a l'autre. */
+@media (max-width: 1300px) {
   .ev-body { grid-template-columns: minmax(0, 1fr); }
   .ev-name { grid-column: 1; grid-row: 1; }
   .ev-price { grid-column: 1; grid-row: 2; white-space: normal; margin-top: 3px; }
@@ -1531,45 +1533,98 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1080px) {
-  .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-  .brand { justify-self: auto; }
-  .brand img { height: 60px; }
-  .site-header.scrolled .brand img { height: 52px; }
-  .nav-capsule { display: contents; }
-  .header-actions { display: none; }
-  /* meme verre que la capsule et que le panier */
-  .site-header {
-    background:
-      linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 60%),
-      rgba(22, 36, 27, 0.42);
-    backdrop-filter: blur(30px) saturate(155%) brightness(0.58);
-    -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.58);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  /* Deux pastilles de verre au lieu d'une capsule pleine largeur : sur un ecran
+     de telephone, une capsule qui va d'un bord a l'autre revient a poser une
+     barre sur la photo. La photo respire entre le logo et le bouton. */
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    max-width: none;
+    margin: calc(12px + env(safe-area-inset-top, 0px)) 14px 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
   }
+  .header-inner::before { display: none; }
+  .brand, .burger {
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
+      rgba(22, 36, 27, 0.5);
+    backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+    -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+    box-shadow: 0 10px 30px rgba(10, 12, 16, 0.24);
+  }
+  .brand { justify-self: auto; align-items: center; height: 52px; padding-inline: 12px; }
+  .brand img { height: 38px; }
+  .site-header.scrolled .brand img { height: 38px; }
+  /* right/top viennent de la regle de base en position:absolute ; repasse en
+     relative, ils devenaient un decalage qui faisait chevaucher le panier. */
+  .burger { width: 52px; height: 52px; padding: 15px 13px; right: auto; top: auto; }
+  .nav-capsule { display: contents; }
+  /* Le panier est le seul bouton reellement actif de la maquette : il reste
+     accessible en pastille, a cote du menu, au lieu d'etre absent du telephone. */
+  .header-actions { display: flex; margin-left: auto; gap: 8px; }
+  .header-actions > *:not(.header-cart) { display: none; }
+  .header-cart {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
+      rgba(22, 36, 27, 0.5);
+    backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+    -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+    box-shadow: 0 10px 30px rgba(10, 12, 16, 0.24);
+  }
+  /* en pastille, la pastille de comptage debordait sur le bouton voisin */
+  .cart-compteur { top: 2px; right: 2px; }
+  .site-header.menu-open .header-actions { display: none; }
+  /* plus de bande pleine largeur : le verre vit sur les pastilles */
+  .site-header { background: transparent; border-bottom-color: transparent; }
+  /* Panneau de verre flottant, cale sur les pastilles. Il peut etre en
+     position:fixed sans risque : plus aucun de ses ancetres ne porte de
+     backdrop-filter, le verre vit sur le logo et sur le bouton. */
   .main-nav {
     position: fixed;
-    inset: 0;
+    top: calc(12px + env(safe-area-inset-top, 0px));
+    left: 14px;
+    right: 14px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     z-index: 90;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 6px;
-    background: var(--bg);
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
+      rgba(22, 36, 27, 0.5);
+    backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+    -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+    box-shadow: 0 24px 64px rgba(10, 14, 12, 0.34);
     opacity: 0;
     visibility: hidden;
     transition: opacity 300ms var(--ease), visibility 300ms var(--ease);
   }
   .site-header.menu-open .main-nav { opacity: 1; visibility: visible; }
-  /* Un backdrop-filter cree un bloc conteneur pour ses descendants en position:fixed :
-     le panneau de menu restait enferme dans la boite du header (390x84 au lieu de
-     390x844) et les liens se posaient nus sur la photo. On coupe le filtre a
-     l'ouverture, le panneau opaque prend le relais. */
-  .site-header.menu-open {
+  /* menu ouvert : les pastilles se fondent dans le panneau, deux verres
+     superposes donneraient une tache plus sombre autour du logo */
+  .site-header.menu-open .brand,
+  .site-header.menu-open .burger {
     background: transparent;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    border-bottom-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
   }
   .main-nav ul { flex-direction: column; align-items: center; gap: 2px; }
   .main-nav a:not(.btn) {
@@ -1580,7 +1635,7 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
     font-size: 1.5rem;
     text-transform: none;
     letter-spacing: normal;
-    color: var(--ink);
+    color: #fff;
   }
   .burger { display: flex; position: static; transform: none; }
   .burger, .brand { position: relative; z-index: 95; }
