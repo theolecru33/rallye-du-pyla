@@ -38,9 +38,28 @@
   burger.addEventListener('click', function () {
     if (header.classList.contains('menu-open')) { closeMenu(); } else { openMenu(); }
   });
+  /* Les vignettes des panneaux ne sont chargees qu'a la premiere ouverture.
+     loading="lazy" ne les retenait pas : le navigateur telecharge quand meme
+     une image differee posee dans un conteneur en display:none. */
+  function hydrater(racine) {
+    racine.querySelectorAll('img[data-src]').forEach(function (im) {
+      if (im.dataset.srcset) { im.srcset = im.dataset.srcset; }
+      im.src = im.dataset.src;
+      delete im.dataset.src;
+      delete im.dataset.srcset;
+    });
+  }
+
   /* Onglets depliables du tiroir mobile : le lien de tete ouvre son panneau
      au lieu de naviguer. En desktop il garde son comportement d'origine. */
   var declencheurs = document.querySelectorAll('.has-mega > a');
+  Array.prototype.forEach.call(declencheurs, function (a) {
+    var li = a.parentElement;
+    /* desktop : le panneau s'ouvre au survol ou au clavier */
+    ['mouseenter', 'focusin'].forEach(function (ev) {
+      li.addEventListener(ev, function () { hydrater(li); }, { once: true });
+    });
+  });
   Array.prototype.forEach.call(declencheurs, function (a) {
     a.setAttribute('aria-expanded', 'false');
     a.addEventListener('click', function (e) {
@@ -57,6 +76,7 @@
       if (ouvert) {
         li.classList.add('open');
         a.setAttribute('aria-expanded', 'true');
+        hydrater(li);
       }
     });
   });
@@ -122,17 +142,17 @@
   var MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 
   /* Source : rallyedupyla.fr. Statuts : libre (entrée libre), ouvert (inscriptions), passe. */
-  var PHOTO_COFFEE = { image: 'coffee-place-matin.jpg', alt: 'Porsche 911 et voitures anciennes rassemblées un dimanche matin, place Daniel Meller' };
+  var PHOTO_COFFEE = { image: 'coffee-place-matin', alt: 'Porsche 911 et voitures anciennes rassemblées un dimanche matin, place Daniel Meller' };
   var RESUME_COFFEE = 'Chaque premier dimanche du mois, les belles mécaniques se retrouvent entre verdure et bord de plage, autour d’un petit-déjeuner.';
   var EVENEMENTS = [
     { debut: '2026-05-03', fin: null, titre: 'Rallye Pyla Coffee', heure: '9h à 12h', lieu: 'Place Daniel Meller, Pyla-sur-Mer', statut: 'libre', image: PHOTO_COFFEE.image, alt: PHOTO_COFFEE.alt, resume: RESUME_COFFEE },
     { debut: '2026-06-07', fin: null, titre: 'Rallye Pyla Coffee', heure: '9h à 12h', lieu: 'Place Daniel Meller, Pyla-sur-Mer', statut: 'libre', image: PHOTO_COFFEE.image, alt: PHOTO_COFFEE.alt, resume: RESUME_COFFEE },
-    { debut: '2026-06-20', fin: null, titre: 'La Noctambule', heure: 'Balade au crépuscule, puis soirée', lieu: 'Pyla-sur-Mer', statut: 'libre', image: 'noctambule-plaque.jpg', alt: 'Plaque de rallye de La Noctambule tenue à deux mains', resume: 'Un itinéraire tracé à la tombée du jour, puis un cocktail chic et champêtre au cœur du Pyla, entre passionnés.' },
+    { debut: '2026-06-20', fin: null, titre: 'La Noctambule', heure: 'Balade au crépuscule, puis soirée', lieu: 'Pyla-sur-Mer', statut: 'libre', image: 'noctambule-plaque', alt: 'Plaque de rallye de La Noctambule tenue à deux mains', resume: 'Un itinéraire tracé à la tombée du jour, puis un cocktail chic et champêtre au cœur du Pyla, entre passionnés.' },
     { debut: '2026-07-05', fin: null, titre: 'Rallye Pyla Coffee', heure: '9h à 12h', lieu: 'Place Daniel Meller, Pyla-sur-Mer', statut: 'libre', image: PHOTO_COFFEE.image, alt: PHOTO_COFFEE.alt, resume: RESUME_COFFEE },
-    { debut: '2026-08-02', fin: null, titre: 'Apéro Capot', heure: '9h à 15h', lieu: 'Place Daniel Meller, Pyla-sur-Mer', statut: 'libre', image: 'apero-capot.jpg', alt: 'Apéritif dressé sur le capot d’une voiture ancienne, verres de rosé sur nappe blanche', resume: 'Nappes sur les capots, ambiance élégante et champêtre : en 2024, 250 voitures de prestige étaient au rendez-vous.' },
+    { debut: '2026-08-02', fin: null, titre: 'Apéro Capot', heure: '9h à 15h', lieu: 'Place Daniel Meller, Pyla-sur-Mer', statut: 'libre', image: 'apero-capot', alt: 'Apéritif dressé sur le capot d’une voiture ancienne, verres de rosé sur nappe blanche', resume: 'Nappes sur les capots, ambiance élégante et champêtre : en 2024, 250 voitures de prestige étaient au rendez-vous.' },
     { debut: '2026-09-06', fin: null, titre: 'Rallye Pyla Coffee', heure: '9h à 12h', lieu: 'Place Daniel Meller, Pyla-sur-Mer', statut: 'libre', image: PHOTO_COFFEE.image, alt: PHOTO_COFFEE.alt, resume: RESUME_COFFEE },
-    { debut: '2026-09-17', fin: '2026-09-20', titre: 'GT Tour 2026 · session 1', heure: 'Accueil le jeudi de 16h à 17h', lieu: 'Au départ de Vichy', statut: 'ouvert', image: 'gt-tour-montagne.jpg', alt: 'Corvette jaune et cabriolet rouge sur une route de montagne dans la brume', resume: 'Quatre jours de routes choisies, de tables gastronomiques et de nuits cinq étoiles, en petit comité.' },
-    { debut: '2026-10-01', fin: '2026-10-04', titre: 'GT Tour 2026 · session 2', heure: 'Accueil le jeudi de 16h à 17h', lieu: 'Au départ de Vichy', statut: 'ouvert', image: 'gt-tour-brume.jpg', alt: 'GT alignées dans la brume sur une route de col pendant le GT Tour', resume: 'Même programme, second départ : 880 km au départ de Vichy, douze à quinze équipages, pas un de plus.' }
+    { debut: '2026-09-17', fin: '2026-09-20', titre: 'GT Tour 2026 · session 1', heure: 'Accueil le jeudi de 16h à 17h', lieu: 'Au départ de Vichy', statut: 'ouvert', image: 'gt-tour-montagne', alt: 'Corvette jaune et cabriolet rouge sur une route de montagne dans la brume', resume: 'Quatre jours de routes choisies, de tables gastronomiques et de nuits cinq étoiles, en petit comité.' },
+    { debut: '2026-10-01', fin: '2026-10-04', titre: 'GT Tour 2026 · session 2', heure: 'Accueil le jeudi de 16h à 17h', lieu: 'Au départ de Vichy', statut: 'ouvert', image: 'gt-tour-brume', alt: 'GT alignées dans la brume sur une route de col pendant le GT Tour', resume: 'Même programme, second départ : 880 km au départ de Vichy, douze à quinze équipages, pas un de plus.' }
   ];
 
   var calGrille = document.getElementById('cal-grille');
@@ -215,7 +235,10 @@
 
       calVedette.innerHTML =
         '<div class="cal-vedette-split">' +
-          '<img src="assets/img/' + ev.image + '" alt="' + ev.alt + '" loading="lazy">' +
+          '<img src="assets/img/' + ev.image + '-640.webp"' +
+               ' srcset="' + jeu(ev.image, [320, 640, 1280]) + '"' +
+               ' sizes="(max-width: 1080px) 92vw, 640px"' +
+               ' width="640" height="427" alt="' + ev.alt + '" loading="lazy" decoding="async">' +
           '<div class="cal-vedette-corps">' +
             '<p class="cal-vedette-jour">' + grosJour + '</p>' +
             '<p class="cal-vedette-mois">' + sousTitre + '</p>' +
@@ -379,10 +402,10 @@
      Tiroir lateral, quantites, retrait, jauge de livraison offerte.
      ========================================================================== */
   var PRODUITS = [
-    { nom: 'Polo Homme', prix: 45, image: 'boutique-polo-homme.jpg', variante: 'Taille L' },
-    { nom: 'Sweat-shirt', prix: 65, image: 'boutique-sweat.jpg', variante: 'Taille M' },
-    { nom: 'Tee \u00ab Porsche \u00bb', prix: 5, image: 'boutique-tee-porsche.jpg', variante: 'Taille L' },
-    { nom: 'Polo Femme', prix: 45, image: 'boutique-polo-femme.jpg', variante: 'Taille S' }
+    { nom: 'Polo Homme', prix: 45, image: 'boutique-polo-homme', variante: 'Taille L' },
+    { nom: 'Sweat-shirt', prix: 65, image: 'boutique-sweat', variante: 'Taille M' },
+    { nom: 'Tee \u00ab Porsche \u00bb', prix: 5, image: 'boutique-tee-porsche', variante: 'Taille L' },
+    { nom: 'Polo Femme', prix: 45, image: 'boutique-polo-femme', variante: 'Taille S' }
   ];
   var LIVRAISON = 15;
   var SEUIL_FRANCO = 80;
@@ -392,6 +415,14 @@
   var panierCorps = document.getElementById('panier-corps');
   var cartCompteur = document.getElementById('cart-compteur');
   var lignesPanier = [];
+
+  /* Les images existent en plusieurs largeurs : on laisse le navigateur
+     choisir, il connait la densite de l'ecran, nous non. */
+  function jeu(base, largeurs) {
+    return largeurs.map(function (w) {
+      return 'assets/img/' + base + '-' + w + '.webp ' + w + 'w';
+    }).join(', ');
+  }
 
   function euros(n) { return String(n).replace('.', ',') + ' \u20ac'; }
 
@@ -426,7 +457,9 @@
       panierCorps.innerHTML = lignesPanier.map(function (l, i) {
         var p = l.produit;
         return '<article class="panier-article">' +
-                 '<img src="assets/img/' + p.image + '" alt="" loading="lazy">' +
+                 '<img src="assets/img/' + p.image + '-160.webp"' +
+                      ' srcset="' + jeu(p.image, [160, 320]) + '" sizes="76px"' +
+                      ' width="76" height="92" alt="" loading="lazy" decoding="async">' +
                  '<div>' +
                    '<div class="panier-article-haut">' +
                      '<div>' +
@@ -614,15 +647,38 @@
     });
   });
 
-  /* ----- Diaporama du hero (fond qui défile tout seul toutes les 4 s) ----- */
+  /* ----- Diaporama du hero (fond qui défile tout seul toutes les 4 s) -----
+     Les neuf diapos sont empilees dans le champ de vision : loading="lazy" ne
+     sert a rien sur elles, le navigateur les telechargeait toutes au premier
+     affichage. Seule la premiere part avec le HTML, les autres portent leur
+     adresse en data- et ne sont chargees qu'une diapo avant leur tour. */
   var slides = document.querySelectorAll('.hero-slides img');
-  if (slides.length > 1 && !reduceMotion) {
+
+  function chargerDiapo(im) {
+    if (!im || !im.dataset.srcset) { return; }
+    im.srcset = im.dataset.srcset;
+    im.src = im.dataset.src;
+    delete im.dataset.srcset;
+    delete im.dataset.src;
+  }
+
+  if (slides.length > 1) {
     var slideIndex = 0;
-    setInterval(function () {
-      slides[slideIndex].classList.remove('is-active');
-      slideIndex = (slideIndex + 1) % slides.length;
-      slides[slideIndex].classList.add('is-active');
-    }, 4500);
+    var suivante = function (i) { return slides[(i + 1) % slides.length]; };
+    /* la deuxieme diapo se prepare une fois la page posee, pas avant */
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function () { chargerDiapo(suivante(0)); }, { timeout: 3000 });
+    } else {
+      window.addEventListener('load', function () { chargerDiapo(suivante(0)); });
+    }
+    if (!reduceMotion) {
+      setInterval(function () {
+        slides[slideIndex].classList.remove('is-active');
+        slideIndex = (slideIndex + 1) % slides.length;
+        slides[slideIndex].classList.add('is-active');
+        chargerDiapo(suivante(slideIndex));
+      }, 4500);
+    }
   }
 
   /* ----- Année du footer ----- */

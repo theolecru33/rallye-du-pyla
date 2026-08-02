@@ -6,13 +6,17 @@
   <title>Rallye du Pyla : rassemblements et rallyes automobiles sur le Bassin d’Arcachon</title>
   <meta name="description" content="Depuis 2019, le Rallye du Pyla rassemble les passionnés d’automobiles de collection, de youngtimers et de GT sur le Bassin d’Arcachon : balades au crépuscule, rendez-vous du dimanche, séjours routiers et soirées d’exception.">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="preload" as="image" href="assets/img/gt3-dune-brume-1280.webp"
+        imagesrcset="assets/img/gt3-dune-brume-640.webp 640w, assets/img/gt3-dune-brume-1280.webp 1280w, assets/img/gt3-dune-brume-2200.webp 2200w" imagesizes="100vw" fetchpriority="high">
   <link rel="preload" href="assets/fonts/fraunces-v38-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/hanken-grotesk-v12-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/onepage.css?v=89">
+  <link rel="stylesheet" href="assets/css/onepage.css?v=93">
   <script>document.documentElement.classList.add('js');</script>
   <meta property="og:title" content="Rallye du Pyla : à la vie et à l’automobile">
   <meta property="og:description" content="Balades au crépuscule, rendez-vous du dimanche, séjours routiers et soirées d’exception sur le Bassin d’Arcachon.">
-  <meta property="og:image" content="assets/img/gt3-dune-brume.jpg">
+  <meta property="og:image" content="https://theolecru33.github.io/rallye-du-pyla/assets/img/og-rallye-du-pyla.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
   <!-- Maquette one-page autonome (fichiers dedies onepage.css / onepage.js) -->
@@ -24,7 +28,7 @@
 <header class="site-header" id="haut">
   <div class="header-inner">
     <a class="brand" href="#haut" aria-label="Rallye du Pyla, retour en haut de page">
-      <img src="assets/img/logo-rdp.png" alt="" width="1209" height="686">
+      <img decoding="async" src="assets/img/logo-rdp-400.webp" srcset="assets/img/logo-rdp-200.webp 200w, assets/img/logo-rdp-400.webp 400w" sizes="(max-width: 1080px) 38px, 92px" alt="" width="1209" height="686">
     </a>
     <div class="nav-capsule">
       <nav class="main-nav" id="nav" aria-label="Navigation principale">
@@ -36,19 +40,19 @@
                 <p class="mega-title">Les prochains rendez-vous</p>
                 <div class="mega-grid mega-grid-4">
                   <a class="mega-card" href="#agenda">
-                    <span class="mega-thumb"><img src="assets/img/apero-capot.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="640" height="427" decoding="async" data-src="assets/img/apero-capot-640.webp" data-srcset="assets/img/apero-capot-320.webp 320w, assets/img/apero-capot-640.webp 640w, assets/img/apero-capot-1280.webp 1280w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">L’Apéro Capot</span><span class="mega-meta">02 août · Gratuit</span></span>
                   </a>
                   <a class="mega-card" href="#agenda">
-                    <span class="mega-thumb"><img src="assets/img/coffee-place-matin.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="640" height="427" decoding="async" data-src="assets/img/coffee-place-matin-640.webp" data-srcset="assets/img/coffee-place-matin-320.webp 320w, assets/img/coffee-place-matin-640.webp 640w, assets/img/coffee-place-matin-1280.webp 1280w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">Rallye Pyla Coffee</span><span class="mega-meta">06 sept · Gratuit</span></span>
                   </a>
                   <a class="mega-card" href="#agenda">
-                    <span class="mega-thumb"><img src="assets/img/gt-tour-montagne.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="1280" height="853" decoding="async" data-src="assets/img/gt-tour-montagne-1280.webp" data-srcset="assets/img/gt-tour-montagne-640.webp 640w, assets/img/gt-tour-montagne-1280.webp 1280w, assets/img/gt-tour-montagne-1920.webp 1920w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">GT Tour</span><span class="mega-meta">17 sept · dès 2 790 €</span></span>
                   </a>
                   <a class="mega-card" href="#agenda">
-                    <span class="mega-thumb"><img src="assets/img/noctambule-bassin-crepuscule.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="640" height="960" decoding="async" data-src="assets/img/noctambule-bassin-crepuscule-640.webp" data-srcset="assets/img/noctambule-bassin-crepuscule-320.webp 320w, assets/img/noctambule-bassin-crepuscule-640.webp 640w, assets/img/noctambule-bassin-crepuscule-1280.webp 1280w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">Dîner de Noël</span><span class="mega-meta">Décembre · le club</span></span>
                   </a>
                 </div>
@@ -56,11 +60,11 @@
                 <p class="mega-title">Explorer</p>
                 <div class="mega-grid mega-grid-2 mega-pages">
                   <a class="mega-card" href="#agenda">
-                    <span class="mega-thumb"><img src="assets/img/galerie-bugatti-foule.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="960" height="640" decoding="async" data-src="assets/img/galerie-bugatti-foule-960.webp" data-srcset="assets/img/galerie-bugatti-foule-480.webp 480w, assets/img/galerie-bugatti-foule-960.webp 960w, assets/img/galerie-bugatti-foule-1600.webp 1600w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">Tout l’agenda</span><span class="mega-meta">La saison au complet, mois par mois</span></span>
                   </a>
                   <a class="mega-card" href="#galerie">
-                    <span class="mega-thumb"><img src="assets/img/chapeaux-bugatti-tapis.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="1600" height="1067" decoding="async" data-src="assets/img/chapeaux-bugatti-tapis-1600.webp" data-srcset="assets/img/chapeaux-bugatti-tapis-480.webp 480w, assets/img/chapeaux-bugatti-tapis-960.webp 960w, assets/img/chapeaux-bugatti-tapis-1600.webp 1600w, assets/img/chapeaux-bugatti-tapis-1920.webp 1920w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">La galerie photos</span><span class="mega-meta">Les éditions passées en images</span></span>
                   </a>
                 </div>
@@ -73,11 +77,11 @@
               <div class="mega-inner mega-b">
                 <div class="mega-grid mega-grid-2">
                   <a class="mega-card" href="#prive">
-                    <span class="mega-thumb"><img src="assets/img/prive-chantier-naval.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="640" height="427" decoding="async" data-src="assets/img/prive-chantier-naval-640.webp" data-srcset="assets/img/prive-chantier-naval-320.webp 320w, assets/img/prive-chantier-naval-640.webp 640w, assets/img/prive-chantier-naval-1280.webp 1280w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">Votre événement sur mesure</span><span class="mega-meta">Rallye privé, séminaire, mariage, shooting : on conçoit tout.</span></span>
                   </a>
                   <a class="mega-card" href="#galerie">
-                    <span class="mega-thumb"><img src="assets/img/chapeaux-salon-remparts.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="640" height="427" decoding="async" data-src="assets/img/chapeaux-salon-remparts-640.webp" data-srcset="assets/img/chapeaux-salon-remparts-320.webp 320w, assets/img/chapeaux-salon-remparts-640.webp 640w, assets/img/chapeaux-salon-remparts-1280.webp 1280w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">Nos réalisations</span><span class="mega-meta">Les événements qu’on a déjà orchestrés.</span></span>
                   </a>
                 </div>
@@ -91,19 +95,19 @@
                 <p class="mega-title">La boutique</p>
                 <div class="mega-grid mega-grid-4">
                   <a class="mega-card" href="#contact">
-                    <span class="mega-thumb"><img src="assets/img/boutique-polo-homme.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="320" height="395" decoding="async" data-src="assets/img/boutique-polo-homme-320.webp" data-srcset="assets/img/boutique-polo-homme-160.webp 160w, assets/img/boutique-polo-homme-320.webp 320w, assets/img/boutique-polo-homme-640.webp 640w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">Polo Homme</span><span class="mega-meta">45 €</span></span>
                   </a>
                   <a class="mega-card" href="#contact">
-                    <span class="mega-thumb"><img src="assets/img/boutique-sweat.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="320" height="480" decoding="async" data-src="assets/img/boutique-sweat-320.webp" data-srcset="assets/img/boutique-sweat-160.webp 160w, assets/img/boutique-sweat-320.webp 320w, assets/img/boutique-sweat-640.webp 640w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">Sweat-shirt</span><span class="mega-meta">65 €</span></span>
                   </a>
                   <a class="mega-card" href="#contact">
-                    <span class="mega-thumb"><img src="assets/img/boutique-tee-porsche.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="320" height="388" decoding="async" data-src="assets/img/boutique-tee-porsche-320.webp" data-srcset="assets/img/boutique-tee-porsche-160.webp 160w, assets/img/boutique-tee-porsche-320.webp 320w, assets/img/boutique-tee-porsche-640.webp 640w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">Tee « Porsche »</span><span class="mega-meta">5 €</span></span>
                   </a>
                   <a class="mega-card" href="#contact">
-                    <span class="mega-thumb"><img src="assets/img/boutique-polo-femme.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="320" height="480" decoding="async" data-src="assets/img/boutique-polo-femme-320.webp" data-srcset="assets/img/boutique-polo-femme-160.webp 160w, assets/img/boutique-polo-femme-320.webp 320w, assets/img/boutique-polo-femme-640.webp 640w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">Polo Femme</span><span class="mega-meta">45 €</span></span>
                   </a>
                 </div>
@@ -117,11 +121,11 @@
               <div class="mega-inner mega-b">
                 <div class="mega-grid mega-grid-2">
                   <a class="mega-card" href="#association">
-                    <span class="mega-thumb"><img src="assets/img/association-fondateur.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="640" height="427" decoding="async" data-src="assets/img/association-fondateur-640.webp" data-srcset="assets/img/association-fondateur-320.webp 320w, assets/img/association-fondateur-640.webp 640w, assets/img/association-fondateur-1280.webp 1280w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">L’équipe</span><span class="mega-meta">Les bénévoles qui font vivre le club.</span></span>
                   </a>
                   <a class="mega-card" href="#partenaires">
-                    <span class="mega-thumb"><img src="assets/img/club-plaque-19.jpg" alt="" loading="lazy"></span>
+                    <span class="mega-thumb"><img width="640" height="426" decoding="async" data-src="assets/img/club-plaque-19-640.webp" data-srcset="assets/img/club-plaque-19-320.webp 320w, assets/img/club-plaque-19-640.webp 640w, assets/img/club-plaque-19-1280.webp 1280w" sizes="(max-width: 1080px) 62px, 530px" alt="" loading="lazy"></span>
                     <span class="mega-body"><span class="mega-name">Nos partenaires</span><span class="mega-meta">Ceux qui nous accompagnent depuis 2019.</span></span>
                   </a>
                 </div>
@@ -168,17 +172,17 @@
   <section class="hero">
     <div class="hero-poster">
       <div class="hero-slides" aria-hidden="true">
-        <img class="is-active" src="assets/img/gt3-dune-brume.jpg" alt="" fetchpriority="high">
-        <img src="assets/img/hero-route-foret.jpg" alt="" loading="lazy">
-        <img src="assets/img/hero-xk120-champ.jpg" alt="" loading="lazy">
-        <img src="assets/img/hero-ferrari-chateau.jpg" alt="" loading="lazy">
-        <img src="assets/img/hero-ferrari-statue.jpg" alt="" loading="lazy">
-        <img src="assets/img/hero-lambo-vert.jpg" alt="" loading="lazy">
-        <img src="assets/img/hero-fiat500.jpg" alt="" loading="lazy">
-        <img src="assets/img/gt-tour-montagne.jpg" alt="" loading="lazy">
-        <img src="assets/img/hero-ds-chateau.jpg" alt="" loading="lazy">
+        <img width="1280" height="853" decoding="async" class="is-active" src="assets/img/gt3-dune-brume-1280.webp" srcset="assets/img/gt3-dune-brume-640.webp 640w, assets/img/gt3-dune-brume-1280.webp 1280w, assets/img/gt3-dune-brume-2200.webp 2200w" sizes="100vw" alt="" fetchpriority="high">
+        <img width="1920" height="1280" decoding="async" data-src="assets/img/hero-route-foret-1920.webp" data-srcset="assets/img/hero-route-foret-640.webp 640w, assets/img/hero-route-foret-1280.webp 1280w, assets/img/hero-route-foret-1920.webp 1920w, assets/img/hero-route-foret-2560.webp 2560w" sizes="100vw" alt="">
+        <img width="1920" height="1280" decoding="async" data-src="assets/img/hero-xk120-champ-1920.webp" data-srcset="assets/img/hero-xk120-champ-640.webp 640w, assets/img/hero-xk120-champ-1280.webp 1280w, assets/img/hero-xk120-champ-1920.webp 1920w, assets/img/hero-xk120-champ-2560.webp 2560w" sizes="100vw" alt="">
+        <img width="1920" height="1280" decoding="async" data-src="assets/img/hero-ferrari-chateau-1920.webp" data-srcset="assets/img/hero-ferrari-chateau-640.webp 640w, assets/img/hero-ferrari-chateau-1280.webp 1280w, assets/img/hero-ferrari-chateau-1920.webp 1920w, assets/img/hero-ferrari-chateau-2560.webp 2560w" sizes="100vw" alt="">
+        <img width="1920" height="1280" decoding="async" data-src="assets/img/hero-ferrari-statue-1920.webp" data-srcset="assets/img/hero-ferrari-statue-640.webp 640w, assets/img/hero-ferrari-statue-1280.webp 1280w, assets/img/hero-ferrari-statue-1920.webp 1920w, assets/img/hero-ferrari-statue-2560.webp 2560w" sizes="100vw" alt="">
+        <img width="1280" height="853" decoding="async" data-src="assets/img/hero-lambo-vert-1280.webp" data-srcset="assets/img/hero-lambo-vert-640.webp 640w, assets/img/hero-lambo-vert-1280.webp 1280w, assets/img/hero-lambo-vert-2048.webp 2048w" sizes="100vw" alt="">
+        <img width="1920" height="1280" decoding="async" data-src="assets/img/hero-fiat500-1920.webp" data-srcset="assets/img/hero-fiat500-640.webp 640w, assets/img/hero-fiat500-1280.webp 1280w, assets/img/hero-fiat500-1920.webp 1920w, assets/img/hero-fiat500-2560.webp 2560w" sizes="100vw" alt="">
+        <img width="1280" height="853" decoding="async" data-src="assets/img/gt-tour-montagne-1280.webp" data-srcset="assets/img/gt-tour-montagne-640.webp 640w, assets/img/gt-tour-montagne-1280.webp 1280w, assets/img/gt-tour-montagne-1920.webp 1920w" sizes="100vw" alt="">
+        <img width="1280" height="853" decoding="async" data-src="assets/img/hero-ds-chateau-1280.webp" data-srcset="assets/img/hero-ds-chateau-640.webp 640w, assets/img/hero-ds-chateau-1280.webp 1280w, assets/img/hero-ds-chateau-2048.webp 2048w" sizes="100vw" alt="">
       </div>
-      <img class="hero-plate" src="assets/img/plaque-rallye-pyla.png" alt="" width="2903" height="961">
+      <img decoding="async" class="hero-plate" src="assets/img/plaque-rallye-pyla-900.webp" srcset="assets/img/plaque-rallye-pyla-450.webp 450w, assets/img/plaque-rallye-pyla-900.webp 900w" sizes="(max-width: 1080px) 56vw, 450px" alt="" width="2903" height="961">
       <div class="hero-head">
         <p class="kicker">Depuis 2019</p>
         <h1 class="hero-h1">Nous organisons les évènements <br class="h1-break">que nous aimerions vivre.</h1>
@@ -193,7 +197,7 @@
         <li>
           <a class="ev-card" href="#agenda">
             <div class="ev-media">
-              <img src="assets/img/apero-capot.jpg" alt="Apéritif dressé sur le capot d’une voiture ancienne, verres de rosé sur nappe blanche" loading="lazy">
+              <img width="640" height="427" decoding="async" src="assets/img/apero-capot-640.webp" srcset="assets/img/apero-capot-320.webp 320w, assets/img/apero-capot-640.webp 640w, assets/img/apero-capot-1280.webp 1280w" sizes="(max-width: 720px) 78vw, (max-width: 1080px) 42vw, 270px" alt="Apéritif dressé sur le capot d’une voiture ancienne, verres de rosé sur nappe blanche" loading="lazy">
               <span class="ev-date"><span class="ev-day">02</span><span class="ev-mon">Août</span></span>
             </div>
             <div class="ev-body">
@@ -207,7 +211,7 @@
         <li>
           <a class="ev-card" href="#agenda">
             <div class="ev-media">
-              <img src="assets/img/coffee-place-matin.jpg" alt="Porsche 911 et voitures anciennes rassemblées un dimanche matin, place Daniel Meller" loading="lazy">
+              <img width="640" height="427" decoding="async" src="assets/img/coffee-place-matin-640.webp" srcset="assets/img/coffee-place-matin-320.webp 320w, assets/img/coffee-place-matin-640.webp 640w, assets/img/coffee-place-matin-1280.webp 1280w" sizes="(max-width: 720px) 78vw, (max-width: 1080px) 42vw, 270px" alt="Porsche 911 et voitures anciennes rassemblées un dimanche matin, place Daniel Meller" loading="lazy">
               <span class="ev-date"><span class="ev-day">06</span><span class="ev-mon">Sept.</span></span>
             </div>
             <div class="ev-body">
@@ -221,7 +225,7 @@
         <li>
           <a class="ev-card" href="#agenda">
             <div class="ev-media">
-              <img src="assets/img/gt-tour-montagne.jpg" alt="Corvette jaune et cabriolet rouge sur une route de montagne dans la brume" loading="lazy">
+              <img width="1280" height="853" decoding="async" src="assets/img/gt-tour-montagne-1280.webp" srcset="assets/img/gt-tour-montagne-640.webp 640w, assets/img/gt-tour-montagne-1280.webp 1280w, assets/img/gt-tour-montagne-1920.webp 1920w" sizes="(max-width: 720px) 78vw, (max-width: 1080px) 42vw, 270px" alt="Corvette jaune et cabriolet rouge sur une route de montagne dans la brume" loading="lazy">
               <span class="ev-date"><span class="ev-day">17</span><span class="ev-mon">Sept.</span></span>
             </div>
             <div class="ev-body">
@@ -235,7 +239,7 @@
         <li>
           <a class="ev-card" href="#agenda">
             <div class="ev-media">
-              <img src="assets/img/gt-tour-brume.jpg" alt="GT alignées dans la brume sur une route de col pendant le GT Tour" loading="lazy">
+              <img width="640" height="960" decoding="async" src="assets/img/gt-tour-brume-640.webp" srcset="assets/img/gt-tour-brume-320.webp 320w, assets/img/gt-tour-brume-640.webp 640w, assets/img/gt-tour-brume-1067.webp 1067w" sizes="(max-width: 720px) 78vw, (max-width: 1080px) 42vw, 270px" alt="GT alignées dans la brume sur une route de col pendant le GT Tour" loading="lazy">
               <span class="ev-date"><span class="ev-day">01</span><span class="ev-mon">Oct.</span></span>
             </div>
             <div class="ev-body">
@@ -249,7 +253,7 @@
         <li>
           <a class="ev-card" href="#agenda">
             <div class="ev-media">
-              <img src="assets/img/noctambule-bassin-crepuscule.jpg" alt="Guirlandes lumineuses au-dessus du Bassin d’Arcachon au crépuscule" loading="lazy">
+              <img width="640" height="960" decoding="async" src="assets/img/noctambule-bassin-crepuscule-640.webp" srcset="assets/img/noctambule-bassin-crepuscule-320.webp 320w, assets/img/noctambule-bassin-crepuscule-640.webp 640w, assets/img/noctambule-bassin-crepuscule-1280.webp 1280w" sizes="(max-width: 720px) 78vw, (max-width: 1080px) 42vw, 270px" alt="Guirlandes lumineuses au-dessus du Bassin d’Arcachon au crépuscule" loading="lazy">
               <span class="ev-date"><span class="ev-day">Déc</span><span class="ev-mon">2026</span></span>
             </div>
             <div class="ev-body">
@@ -311,7 +315,7 @@
         <a class="btn btn-light" href="#contact">Demander un devis <span class="chevron" aria-hidden="true">&rsaquo;</span></a>
       </div>
       <div class="gt-media reveal">
-        <img src="assets/img/prive-chantier-naval.jpg" alt="Soirée privée dans un chantier naval, supercar orange exposée devant un yacht" loading="lazy">
+        <img width="640" height="427" decoding="async" src="assets/img/prive-chantier-naval-640.webp" srcset="assets/img/prive-chantier-naval-320.webp 320w, assets/img/prive-chantier-naval-640.webp 640w, assets/img/prive-chantier-naval-1280.webp 1280w" sizes="(max-width: 1080px) 92vw, 700px" alt="Soirée privée dans un chantier naval, supercar orange exposée devant un yacht" loading="lazy">
       </div>
     </div>
   </section>
@@ -320,7 +324,7 @@
   <section class="section section-asso" id="association">
     <div class="container asso-grid">
       <div class="asso-media reveal">
-        <img src="assets/img/association-fondateur.jpg" alt="Présentation du Rallye du Pyla, le logo projeté à l’écran pendant une soirée" loading="lazy">
+        <img width="640" height="427" decoding="async" src="assets/img/association-fondateur-640.webp" srcset="assets/img/association-fondateur-320.webp 320w, assets/img/association-fondateur-640.webp 640w, assets/img/association-fondateur-1280.webp 1280w" sizes="(max-width: 1080px) 92vw, 700px" alt="Présentation du Rallye du Pyla, le logo projeté à l’écran pendant une soirée" loading="lazy">
       </div>
       <div class="asso-body reveal">
         <p class="kicker">L’association</p>
@@ -342,20 +346,20 @@
       </header>
     </div>
     <div class="mosaic reveal">
-      <button type="button" class="mosaic-tile tile-wide" data-full="assets/img/hero-route-foret.jpg"><img src="assets/img/hero-route-foret.jpg" alt="Cortège de voitures de collection sur une route de la forêt des Landes, une Datsun 240Z orange en tête" loading="lazy"></button>
-      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-356-rue.jpg"><img src="assets/img/galerie-356-rue.jpg" alt="Porsche 356 dans la foule un matin de rassemblement" loading="lazy"></button>
-      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-bugatti-foule.jpg"><img src="assets/img/galerie-bugatti-foule.jpg" alt="Bugatti d’avant-guerre entourée de visiteurs" loading="lazy"></button>
-      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-500-route.jpg"><img src="assets/img/galerie-500-route.jpg" alt="Fiat 500 rouge sur une route de campagne dégagée" loading="lazy"></button>
-      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-ds.jpg"><img src="assets/img/galerie-ds.jpg" alt="Deux Citroën DS cabriolet alignées sur l’herbe" loading="lazy"></button>
-      <button type="button" class="mosaic-tile tile-wide" data-full="assets/img/chapeaux-bugatti-tapis.jpg"><img src="assets/img/chapeaux-bugatti-tapis.jpg" alt="Bugatti de course alignées sur le tapis rouge des remparts de Saint-Émilion" loading="lazy"></button>
-      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-dedion-mer.jpg"><img src="assets/img/galerie-dedion-mer.jpg" alt="De Dion-Bouton 1900 conduite en tenue d’époque face à la mer" loading="lazy"></button>
-      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-barquette-grange.jpg"><img src="assets/img/galerie-barquette-grange.jpg" alt="Barquette de course bleu ciel passant devant une grange en pierre" loading="lazy"></button>
-      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-911-route.jpg"><img src="assets/img/galerie-911-route.jpg" alt="Porsche 911 rouge en balade sur une route bordée d’arbres" loading="lazy"></button>
-      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-xk120-pins.jpg"><img src="assets/img/galerie-xk120-pins.jpg" alt="Jaguar XK120 verte garée sous les pins" loading="lazy"></button>
-      <button type="button" class="mosaic-tile" data-full="assets/img/gt3-dune-brume.jpg"><img src="assets/img/gt3-dune-brume.jpg" alt="Porsche 911 GT3 RS noire sur une route de col dans la brume" loading="lazy"></button>
-      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-mg-automne.jpg"><img src="assets/img/galerie-mg-automne.jpg" alt="MG rouge sous les feuillages d’automne pendant un rassemblement" loading="lazy"></button>
-      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-f430-haie.jpg"><img src="assets/img/galerie-f430-haie.jpg" alt="Ferrari F430 rouge longeant une haie taillée dans les vignes" loading="lazy"></button>
-      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-arbre-seul.jpg"><img src="assets/img/galerie-arbre-seul.jpg" alt="Voiture rouge sur une route de campagne près d’un arbre isolé, vue de loin" loading="lazy"></button>
+      <button type="button" class="mosaic-tile tile-wide" data-full="assets/img/hero-route-foret-2560.webp"><img width="1920" height="1280" decoding="async" src="assets/img/hero-route-foret-1920.webp" srcset="assets/img/hero-route-foret-640.webp 640w, assets/img/hero-route-foret-1280.webp 1280w, assets/img/hero-route-foret-1920.webp 1920w, assets/img/hero-route-foret-2560.webp 2560w" sizes="100vw" alt="Cortège de voitures de collection sur une route de la forêt des Landes, une Datsun 240Z orange en tête" loading="lazy"></button>
+      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-356-rue-1600.webp"><img width="960" height="640" decoding="async" src="assets/img/galerie-356-rue-960.webp" srcset="assets/img/galerie-356-rue-480.webp 480w, assets/img/galerie-356-rue-960.webp 960w, assets/img/galerie-356-rue-1600.webp 1600w" sizes="(max-width: 720px) 50vw, 25vw" alt="Porsche 356 dans la foule un matin de rassemblement" loading="lazy"></button>
+      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-bugatti-foule-1600.webp"><img width="960" height="640" decoding="async" src="assets/img/galerie-bugatti-foule-960.webp" srcset="assets/img/galerie-bugatti-foule-480.webp 480w, assets/img/galerie-bugatti-foule-960.webp 960w, assets/img/galerie-bugatti-foule-1600.webp 1600w" sizes="(max-width: 720px) 50vw, 25vw" alt="Bugatti d’avant-guerre entourée de visiteurs" loading="lazy"></button>
+      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-500-route-1600.webp"><img width="960" height="640" decoding="async" src="assets/img/galerie-500-route-960.webp" srcset="assets/img/galerie-500-route-480.webp 480w, assets/img/galerie-500-route-960.webp 960w, assets/img/galerie-500-route-1600.webp 1600w" sizes="(max-width: 720px) 50vw, 25vw" alt="Fiat 500 rouge sur une route de campagne dégagée" loading="lazy"></button>
+      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-ds-1600.webp"><img width="960" height="640" decoding="async" src="assets/img/galerie-ds-960.webp" srcset="assets/img/galerie-ds-480.webp 480w, assets/img/galerie-ds-960.webp 960w, assets/img/galerie-ds-1600.webp 1600w" sizes="(max-width: 720px) 50vw, 25vw" alt="Deux Citroën DS cabriolet alignées sur l’herbe" loading="lazy"></button>
+      <button type="button" class="mosaic-tile tile-wide" data-full="assets/img/chapeaux-bugatti-tapis-1920.webp"><img width="1600" height="1067" decoding="async" src="assets/img/chapeaux-bugatti-tapis-1600.webp" srcset="assets/img/chapeaux-bugatti-tapis-480.webp 480w, assets/img/chapeaux-bugatti-tapis-960.webp 960w, assets/img/chapeaux-bugatti-tapis-1600.webp 1600w, assets/img/chapeaux-bugatti-tapis-1920.webp 1920w" sizes="(max-width: 720px) 100vw, 50vw" alt="Bugatti de course alignées sur le tapis rouge des remparts de Saint-Émilion" loading="lazy"></button>
+      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-dedion-mer-1067.webp"><img width="1067" height="1600" decoding="async" src="assets/img/galerie-dedion-mer-1067.webp" srcset="assets/img/galerie-dedion-mer-480.webp 480w, assets/img/galerie-dedion-mer-1067.webp 1067w" sizes="(max-width: 720px) 50vw, 25vw" alt="De Dion-Bouton 1900 conduite en tenue d’époque face à la mer" loading="lazy"></button>
+      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-barquette-grange-1600.webp"><img width="960" height="640" decoding="async" src="assets/img/galerie-barquette-grange-960.webp" srcset="assets/img/galerie-barquette-grange-480.webp 480w, assets/img/galerie-barquette-grange-960.webp 960w, assets/img/galerie-barquette-grange-1600.webp 1600w" sizes="(max-width: 720px) 50vw, 25vw" alt="Barquette de course bleu ciel passant devant une grange en pierre" loading="lazy"></button>
+      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-911-route-1600.webp"><img width="960" height="640" decoding="async" src="assets/img/galerie-911-route-960.webp" srcset="assets/img/galerie-911-route-480.webp 480w, assets/img/galerie-911-route-960.webp 960w, assets/img/galerie-911-route-1600.webp 1600w" sizes="(max-width: 720px) 50vw, 25vw" alt="Porsche 911 rouge en balade sur une route bordée d’arbres" loading="lazy"></button>
+      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-xk120-pins-1600.webp"><img width="960" height="640" decoding="async" src="assets/img/galerie-xk120-pins-960.webp" srcset="assets/img/galerie-xk120-pins-480.webp 480w, assets/img/galerie-xk120-pins-960.webp 960w, assets/img/galerie-xk120-pins-1600.webp 1600w" sizes="(max-width: 720px) 50vw, 25vw" alt="Jaguar XK120 verte garée sous les pins" loading="lazy"></button>
+      <button type="button" class="mosaic-tile" data-full="assets/img/gt3-dune-brume-2200.webp"><img width="1280" height="853" decoding="async" src="assets/img/gt3-dune-brume-1280.webp" srcset="assets/img/gt3-dune-brume-640.webp 640w, assets/img/gt3-dune-brume-1280.webp 1280w, assets/img/gt3-dune-brume-2200.webp 2200w" sizes="(max-width: 720px) 50vw, 25vw" alt="Porsche 911 GT3 RS noire sur une route de col dans la brume" loading="lazy"></button>
+      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-mg-automne-1067.webp"><img width="1067" height="1600" decoding="async" src="assets/img/galerie-mg-automne-1067.webp" srcset="assets/img/galerie-mg-automne-480.webp 480w, assets/img/galerie-mg-automne-1067.webp 1067w" sizes="(max-width: 720px) 50vw, 25vw" alt="MG rouge sous les feuillages d’automne pendant un rassemblement" loading="lazy"></button>
+      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-f430-haie-1600.webp"><img width="960" height="640" decoding="async" src="assets/img/galerie-f430-haie-960.webp" srcset="assets/img/galerie-f430-haie-480.webp 480w, assets/img/galerie-f430-haie-960.webp 960w, assets/img/galerie-f430-haie-1600.webp 1600w" sizes="(max-width: 720px) 50vw, 25vw" alt="Ferrari F430 rouge longeant une haie taillée dans les vignes" loading="lazy"></button>
+      <button type="button" class="mosaic-tile" data-full="assets/img/galerie-arbre-seul-1067.webp"><img width="1067" height="1600" decoding="async" src="assets/img/galerie-arbre-seul-1067.webp" srcset="assets/img/galerie-arbre-seul-480.webp 480w, assets/img/galerie-arbre-seul-1067.webp 1067w" sizes="(max-width: 720px) 50vw, 25vw" alt="Voiture rouge sur une route de campagne près d’un arbre isolé, vue de loin" loading="lazy"></button>
     </div>
     <p class="galerie-credit container reveal">Photos des éditions passées : Lucas Bouveyron, Vincent Bourgain, Pierre-Alexis Gaudou, Clément Roy.</p>
   </section>
@@ -367,32 +371,32 @@
     </div>
     <div class="partner-defile reveal">
       <ul class="partner-piste" role="list">
-        <li class="partner-item"><img src="assets/img/partenaires/carsup.png" alt="Carsup" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item"><img src="assets/img/partenaires/couach.png" alt="Couach" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item"><img src="assets/img/partenaires/lamborghini-bordeaux.png" alt="Lamborghini Bordeaux" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item"><img src="assets/img/partenaires/oddo-bhf.png" alt="ODDO BHF Banque Privée" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item"><img src="assets/img/partenaires/compagnie-fiduciaire.png" alt="Compagnie Fiduciaire" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item"><img src="assets/img/partenaires/auricoste.png" alt="Auricoste, horloger de la marine" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item"><img src="assets/img/partenaires/chateau-roylland.png" alt="Château Roylland, Saint-Émilion Grand Cru" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item"><img src="assets/img/partenaires/esperance-saint-emilion.png" alt="Espérance Banlieues et Ville de Saint-Émilion" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item"><img decoding="async" src="assets/img/partenaires/carsup-95.webp" alt="Carsup" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item"><img decoding="async" src="assets/img/partenaires/couach-320.webp" srcset="assets/img/partenaires/couach-220.webp 220w, assets/img/partenaires/couach-320.webp 320w" sizes="210px" alt="Couach" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item"><img decoding="async" src="assets/img/partenaires/lamborghini-bordeaux-103.webp" alt="Lamborghini Bordeaux" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item"><img decoding="async" src="assets/img/partenaires/oddo-bhf-270.webp" srcset="assets/img/partenaires/oddo-bhf-220.webp 220w, assets/img/partenaires/oddo-bhf-270.webp 270w" sizes="210px" alt="ODDO BHF Banque Privée" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item"><img decoding="async" src="assets/img/partenaires/compagnie-fiduciaire-222.webp" alt="Compagnie Fiduciaire" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item"><img decoding="async" src="assets/img/partenaires/auricoste-198.webp" alt="Auricoste, horloger de la marine" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item"><img decoding="async" src="assets/img/partenaires/chateau-roylland-124.webp" alt="Château Roylland, Saint-Émilion Grand Cru" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item"><img decoding="async" src="assets/img/partenaires/esperance-saint-emilion-320.webp" srcset="assets/img/partenaires/esperance-saint-emilion-220.webp 220w, assets/img/partenaires/esperance-saint-emilion-320.webp 320w" sizes="210px" alt="Espérance Banlieues et Ville de Saint-Émilion" width="160" height="44" loading="lazy"></li>
         <li class="partner-item"><span>Kidur</span></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/carsup.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/couach.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/lamborghini-bordeaux.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/oddo-bhf.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/compagnie-fiduciaire.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/auricoste.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/chateau-roylland.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/esperance-saint-emilion.png" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/carsup-95.webp" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/couach-320.webp" srcset="assets/img/partenaires/couach-220.webp 220w, assets/img/partenaires/couach-320.webp 320w" sizes="210px" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/lamborghini-bordeaux-103.webp" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/oddo-bhf-270.webp" srcset="assets/img/partenaires/oddo-bhf-220.webp 220w, assets/img/partenaires/oddo-bhf-270.webp 270w" sizes="210px" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/compagnie-fiduciaire-222.webp" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/auricoste-198.webp" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/chateau-roylland-124.webp" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/esperance-saint-emilion-320.webp" srcset="assets/img/partenaires/esperance-saint-emilion-220.webp 220w, assets/img/partenaires/esperance-saint-emilion-320.webp 320w" sizes="210px" alt="" width="160" height="44" loading="lazy"></li>
         <li class="partner-item" aria-hidden="true"><span>Kidur</span></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/carsup.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/couach.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/lamborghini-bordeaux.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/oddo-bhf.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/compagnie-fiduciaire.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/auricoste.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/chateau-roylland.png" alt="" width="160" height="44" loading="lazy"></li>
-        <li class="partner-item" aria-hidden="true"><img src="assets/img/partenaires/esperance-saint-emilion.png" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/carsup-95.webp" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/couach-320.webp" srcset="assets/img/partenaires/couach-220.webp 220w, assets/img/partenaires/couach-320.webp 320w" sizes="210px" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/lamborghini-bordeaux-103.webp" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/oddo-bhf-270.webp" srcset="assets/img/partenaires/oddo-bhf-220.webp 220w, assets/img/partenaires/oddo-bhf-270.webp 270w" sizes="210px" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/compagnie-fiduciaire-222.webp" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/auricoste-198.webp" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/chateau-roylland-124.webp" alt="" width="160" height="44" loading="lazy"></li>
+        <li class="partner-item" aria-hidden="true"><img decoding="async" src="assets/img/partenaires/esperance-saint-emilion-320.webp" srcset="assets/img/partenaires/esperance-saint-emilion-220.webp 220w, assets/img/partenaires/esperance-saint-emilion-320.webp 320w" sizes="210px" alt="" width="160" height="44" loading="lazy"></li>
         <li class="partner-item" aria-hidden="true"><span>Kidur</span></li>
       </ul>
     </div>
@@ -448,7 +452,7 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <img src="assets/img/logo-rdp.png" alt="Rallye du Pyla" width="1209" height="686" loading="lazy">
+      <img decoding="async" src="assets/img/logo-rdp-400.webp" srcset="assets/img/logo-rdp-200.webp 200w, assets/img/logo-rdp-400.webp 400w" sizes="168px" alt="Rallye du Pyla" width="1209" height="686" loading="lazy">
       <p>Rallye du Pyla, association née en 2019 au Pyla-sur-Mer.<br>À la vie et à l’automobile.</p>
     </div>
     <div class="footer-col">
@@ -561,7 +565,7 @@
       </div>
 
     <div class="bwf-contenu">
-      <img class="bwf-mark" src="assets/img/bassinwebflow-mark.png" alt="" width="56" height="56">
+      <img decoding="async" class="bwf-mark" src="assets/img/bassinwebflow-mark-48.webp" alt="" width="56" height="56">
       <h2 class="bwf-titre" id="bwf-titre">Ce site n’existe pas encore.</h2>
       <p class="bwf-texte">Une maquette signée <strong>BassinWebFlow</strong>.</p>
 
@@ -587,6 +591,6 @@
   </div>
 </dialog>
 
-<script src="assets/js/onepage.js?v=89"></script>
+<script src="assets/js/onepage.js?v=93"></script>
 </body>
 </html>
