@@ -1592,22 +1592,74 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   }
   .site-header.menu-open .main-nav { opacity: 1; visibility: visible; transform: translateY(0); }
   .main-nav ul { flex-direction: column; align-items: stretch; gap: 2px; }
-  /* memes rangees que les cartes « Explorer » du panneau desktop */
+  /* Meme typographie que les onglets du header desktop : la sans, en petites
+     capitales espacees. Seule la taille monte, pour rester lisible au doigt. */
   .main-nav a:not(.btn) {
     display: flex;
     align-items: center;
     min-height: 48px;
-    padding: 10px 14px;
+    padding: 12px 14px;
     border-radius: 10px;
-    font-family: var(--display);
-    font-size: 1.15rem;
-    text-transform: none;
-    letter-spacing: normal;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
     color: #fff;
     transition: background-color 200ms var(--ease);
   }
   @media (hover: hover) { .main-nav a:not(.btn):hover { background: rgba(255, 255, 255, 0.1); } }
   .main-nav a:not(.btn):active { background: rgba(255, 255, 255, 0.14); }
+
+  /* Onglets depliables : les memes panneaux qu'en desktop, replies en accordeon */
+  .main-nav .has-mega > a::after {
+    content: '\203A';
+    margin-left: auto;
+    padding-left: 12px;
+    font-size: 1.5em;
+    line-height: 0;
+    color: rgba(255, 255, 255, 0.6);
+    transform: rotate(90deg);
+    transition: transform 240ms var(--ease), color 240ms var(--ease);
+  }
+  .main-nav .has-mega.open > a::after { transform: rotate(-90deg); color: #fff; }
+  .main-nav .has-mega.open > a { background: rgba(255, 255, 255, 0.08); }
+  .has-mega.open > .mega { display: block; }
+  /* le panneau est deja le tiroir : son contenu se pose a plat dedans */
+  .mega-inner { padding: 2px 0 10px; color: #fff; }
+  .mega-title {
+    margin: 10px 14px 4px;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.58);
+  }
+  .mega-sep { display: none; }
+  .mega-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1px; }
+  .mega .mega-thumb { display: none; }
+  .mega a.mega-card {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    min-height: 42px;
+    padding: 8px 14px 8px 26px;
+    border-radius: 10px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 200ms var(--ease);
+  }
+  .mega a.mega-card:active { background: rgba(255, 255, 255, 0.14); }
+  @media (hover: hover) { .mega a.mega-card:hover { background: rgba(255, 255, 255, 0.1); } }
+  .mega .mega-body { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .mega .mega-name { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  /* la date et le tarif restent en bas de casse, ils heritaient des capitales du lien */
+  .mega .mega-meta {
+    font-size: 0.74rem;
+    text-transform: none;
+    letter-spacing: normal;
+    color: rgba(255, 255, 255, 0.58);
+  }
+
   .burger { display: flex; position: static; transform: none; }
   .burger, .brand { position: relative; z-index: 95; }
 

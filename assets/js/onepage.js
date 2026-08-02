@@ -25,6 +25,7 @@
     document.body.style.overflow = '';
     if (contenu) { contenu.removeAttribute('inert'); }
     if (pied) { pied.removeAttribute('inert'); }
+    replierOnglets();
   }
   function openMenu() {
     header.classList.add('menu-open');
@@ -37,8 +38,41 @@
   burger.addEventListener('click', function () {
     if (header.classList.contains('menu-open')) { closeMenu(); } else { openMenu(); }
   });
+  /* Onglets depliables du tiroir mobile : le lien de tete ouvre son panneau
+     au lieu de naviguer. En desktop il garde son comportement d'origine. */
+  var declencheurs = document.querySelectorAll('.has-mega > a');
+  Array.prototype.forEach.call(declencheurs, function (a) {
+    a.setAttribute('aria-expanded', 'false');
+    a.addEventListener('click', function (e) {
+      if (mqDesktop.matches) { return; }
+      e.preventDefault();
+      e.stopPropagation();
+      var li = a.parentElement;
+      var ouvert = !li.classList.contains('open');
+      /* un seul panneau a la fois, sinon le tiroir deborde de l'ecran */
+      Array.prototype.forEach.call(declencheurs, function (autre) {
+        autre.parentElement.classList.remove('open');
+        autre.setAttribute('aria-expanded', 'false');
+      });
+      if (ouvert) {
+        li.classList.add('open');
+        a.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+  function replierOnglets() {
+    Array.prototype.forEach.call(declencheurs, function (a) {
+      a.parentElement.classList.remove('open');
+      a.setAttribute('aria-expanded', 'false');
+    });
+  }
+
   nav.addEventListener('click', function (e) {
-    if (e.target.closest('a')) { closeMenu(); }
+    var lien = e.target.closest('a');
+    if (!lien) { return; }
+    /* le lien de tete d'un onglet deplie le panneau, il ne ferme pas le tiroir */
+    if (!mqDesktop.matches && lien.parentElement.classList.contains('has-mega')) { return; }
+    closeMenu();
   });
   /* Les reseaux, la connexion et le panier vivent dans le panneau sur mobile :
      on le referme avant d'ouvrir le tiroir ou de partir sur un lien externe. */
@@ -522,6 +556,9 @@
   function estAutorise(cible) {
     if (cible.closest('.bwf') || cible.closest('.panier')) { return true; }
     if (cible.closest(MECANIQUE)) { return true; }
+    /* en mobile, le lien de tete d'un onglet deplie son panneau : c'est de la
+       mecanique de menu, pas un bouton du site */
+    if (!mqDesktop.matches && cible.parentElement && cible.parentElement.classList.contains('has-mega')) { return true; }
     if (cible.classList.contains('header-icon') && !cible.classList.contains('header-cart')) { return true; }
     return false;
   }
