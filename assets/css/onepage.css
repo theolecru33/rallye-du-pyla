@@ -300,9 +300,8 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
 
 /* ===== Header : pilule centree en verre (liquid glass) ===== */
 @media (min-width: 1081px) {
-  /* Meme verre que le panier : teinte vert du club, reflet blanc en diagonale,
-     et c'est le brightness qui ecrase la lumiere de la photo, pas l'opacite. */
   .header-inner {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 18px;
@@ -311,14 +310,29 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
     margin: calc(clamp(22px, 2.6vw, 44px) + 10px) auto 0;
     padding: 6px 16px 6px 11px;
     border-radius: 16px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 12px 38px rgba(10, 12, 16, 0.24);
+  }
+  /* Le verre est porte par un pseudo-element, pas par la capsule elle-meme.
+     Un backdrop-filter fait de son element une racine de fond : pose sur
+     .header-inner, il coupait le panneau deroulant, qui est son descendant,
+     de tout ce qu'il y avait a depolir. Sur un ::before, le panneau retrouve
+     la page derriere lui. */
+  .header-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
     background:
       linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
       rgba(22, 36, 27, 0.5);
     backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
     -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    box-shadow: 0 12px 38px rgba(10, 12, 16, 0.24);
   }
+  /* z-index sur des elements flex : il s'applique sans position, donc .main-nav
+     ne devient pas le bloc conteneur du panneau deroulant. */
+  .header-inner > * { z-index: 1; }
   .brand { align-items: center; }
   .brand img { height: 50px; }
   .main-nav a:not(.btn) { min-height: 40px; }
@@ -362,12 +376,13 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
   .has-mega.open .mega,
   .has-mega:focus-within .mega { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; z-index: 51; }
   .mega-inner {
-    /* Le panneau ouvert, lui, doit etre mat : il porte du texte fin par-dessus
-       des photos, la transparence de la capsule n'y est pas tenable. */
-    background: rgba(13, 17, 22, 0.93);
-    backdrop-filter: blur(26px) saturate(130%) brightness(0.5);
-    -webkit-backdrop-filter: blur(26px) saturate(130%) brightness(0.5);
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    /* meme verre que la capsule et que le panier */
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
+      rgba(22, 36, 27, 0.5);
+    backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+    -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 16px;
     box-shadow: 0 22px 54px rgba(10, 12, 16, 0.4);
     padding: 16px;
