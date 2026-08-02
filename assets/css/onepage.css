@@ -1533,76 +1533,50 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1080px) {
-  /* Deux pastilles de verre au lieu d'une capsule pleine largeur : sur un ecran
-     de telephone, une capsule qui va d'un bord a l'autre revient a poser une
-     barre sur la photo. La photo respire entre le logo et le bouton. */
+  /* Meme capsule qu'en desktop, en plus compact : une seule pilule de verre,
+     logo a gauche, panier et menu a droite. Le ::before de base lui donne son
+     verre, on ne le desactive pas ici. */
   .header-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     max-width: none;
     margin: calc(12px + env(safe-area-inset-top, 0px)) 14px 0;
-    padding: 0;
-    border: 0;
-    box-shadow: none;
-  }
-  .header-inner::before { display: none; }
-  .brand, .burger {
-    border-radius: 14px;
+    padding: 5px 6px 5px 12px;
+    border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.22);
-    background:
-      linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
-      rgba(22, 36, 27, 0.5);
-    backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
-    -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
-    box-shadow: 0 10px 30px rgba(10, 12, 16, 0.24);
+    box-shadow: 0 12px 38px rgba(10, 12, 16, 0.24);
   }
-  .brand { justify-self: auto; align-items: center; height: 52px; padding-inline: 12px; }
+  .brand { justify-self: auto; align-items: center; }
   .brand img { height: 38px; }
   .site-header.scrolled .brand img { height: 38px; }
-  /* right/top viennent de la regle de base en position:absolute ; repasse en
-     relative, ils devenaient un decalage qui faisait chevaucher le panier. */
-  .burger { width: 52px; height: 52px; padding: 15px 13px; right: auto; top: auto; }
   .nav-capsule { display: contents; }
   /* Le panier est le seul bouton reellement actif de la maquette : il reste
-     accessible en pastille, a cote du menu, au lieu d'etre absent du telephone. */
-  .header-actions { display: flex; margin-left: auto; gap: 8px; }
+     dans la capsule au lieu d'etre absent du telephone. */
+  .header-actions { display: flex; margin-left: auto; gap: 2px; }
   .header-actions > *:not(.header-cart) { display: none; }
-  .header-cart {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    background:
-      linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%),
-      rgba(22, 36, 27, 0.5);
-    backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
-    -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
-    box-shadow: 0 10px 30px rgba(10, 12, 16, 0.24);
-  }
-  /* en pastille, la pastille de comptage debordait sur le bouton voisin */
-  .cart-compteur { top: 2px; right: 2px; }
-  .site-header.menu-open .header-actions { display: none; }
-  /* plus de bande pleine largeur : le verre vit sur les pastilles */
+  /* le bouton gardait le lisere en relief par defaut du navigateur */
+  .header-cart { width: 44px; height: 44px; border: 0; border-radius: 10px; }
+  .cart-compteur { top: 0; right: 0; }
+  /* right et top viennent de la regle de base en position:absolute ; repasse en
+     relative, ils devenaient un decalage qui poussait le bouton sur son voisin. */
+  .burger { width: 44px; height: 44px; padding: 13px 10px; right: auto; top: auto; }
   .site-header { background: transparent; border-bottom-color: transparent; }
-  /* Panneau de verre flottant, cale sur les pastilles. Il peut etre en
-     position:fixed sans risque : plus aucun de ses ancetres ne porte de
-     backdrop-filter, le verre vit sur le logo et sur le bouton. */
+
+  /* Menu : un panneau qui descend sous la capsule, exactement comme le panneau
+     deroulant du header desktop. Meme verre, meme rayon, meme filet. */
   .main-nav {
     position: fixed;
-    top: calc(12px + env(safe-area-inset-top, 0px));
+    top: calc(78px + env(safe-area-inset-top, 0px));
     left: 14px;
     right: 14px;
-    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     z-index: 90;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
+    display: block;
+    max-height: calc(100svh - 96px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
     overflow-y: auto;
     overscroll-behavior-y: contain;
+    padding: 8px;
     border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 16px;
     background:
@@ -1610,37 +1584,35 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
       rgba(22, 36, 27, 0.5);
     backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
     -webkit-backdrop-filter: blur(30px) saturate(155%) brightness(0.52);
-    box-shadow: 0 24px 64px rgba(10, 14, 12, 0.34);
+    box-shadow: 0 22px 54px rgba(10, 12, 16, 0.4);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 300ms var(--ease), visibility 300ms var(--ease);
+    transform: translateY(-6px);
+    transition: opacity 240ms var(--ease), transform 240ms var(--ease), visibility 240ms var(--ease);
   }
-  .site-header.menu-open .main-nav { opacity: 1; visibility: visible; }
-  /* menu ouvert : les pastilles se fondent dans le panneau, deux verres
-     superposes donneraient une tache plus sombre autour du logo */
-  .site-header.menu-open .brand,
-  .site-header.menu-open .burger {
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-color: transparent;
-    box-shadow: none;
-  }
-  .main-nav ul { flex-direction: column; align-items: center; gap: 2px; }
+  .site-header.menu-open .main-nav { opacity: 1; visibility: visible; transform: translateY(0); }
+  .main-nav ul { flex-direction: column; align-items: stretch; gap: 2px; }
+  /* memes rangees que les cartes « Explorer » du panneau desktop */
   .main-nav a:not(.btn) {
-    min-height: auto;
-    padding: 10px 16px;
-    border-radius: 0;
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 10px 14px;
+    border-radius: 10px;
     font-family: var(--display);
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     text-transform: none;
     letter-spacing: normal;
     color: #fff;
+    transition: background-color 200ms var(--ease);
   }
+  @media (hover: hover) { .main-nav a:not(.btn):hover { background: rgba(255, 255, 255, 0.1); } }
+  .main-nav a:not(.btn):active { background: rgba(255, 255, 255, 0.14); }
   .burger { display: flex; position: static; transform: none; }
   .burger, .brand { position: relative; z-index: 95; }
 
-  .hero-poster { top: 0; }
+  /* la photo commence sous la capsule, elle ne passe plus derriere */
+  .hero-poster { top: 78px; }
   .hero-plate { width: clamp(220px, 34vw, 380px); }
   .agenda-tete { grid-template-columns: minmax(0, 1fr); }
   .calendrier-scene { order: 0; min-width: 0; }
@@ -1657,7 +1629,7 @@ section[id], footer[id], [id="haut"] { scroll-margin-top: 92px; }
 }
 
 @media (max-width: 720px) {
-  .hero-poster { top: 0; left: 12px; right: 12px; }
+  .hero-poster { top: 78px; left: 12px; right: 12px; }
   .hero-plate { top: 24%; width: clamp(200px, 56vw, 320px); }
   .hero-head { padding: 20px; }
   .hero-h1 { font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.85rem); }
